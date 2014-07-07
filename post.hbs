@@ -1,0 +1,39 @@
+{{!< default}}
+
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+
+{{! The big featured header on the homepage, with the site logo and description }}
+<header class="site-head" {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}}>
+     <canvas data-processing-sources="{{asset "/js/header.pde"}}"></canvas>
+
+
+    <div class="vertical">
+        <div class="site-head-content inner">
+            <h1 class="blog-title">{{@blog.title}}</h1>
+        </div>
+    </div>
+</header>
+
+
+<div class="wrapper">
+
+{{! The main content area on the homepage }}
+<main class="content" role="main">
+
+    {{#post}}
+    <article class="{{post_class}}">
+        <header class="post-header">
+            <span class="post-meta"><time datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD.MM.YYYY"}}</time></span>
+            <h2 class="post-title"><a href="{{url}}">{{{title}}}</a></h2>
+
+        </header>
+        <section class="post-content">
+            <p>{{content}}</p>
+        </section>
+    </article>
+    {{/post}}
+
+</main>
+
+</div>
